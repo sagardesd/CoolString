@@ -9,46 +9,27 @@
 typedef std::vector<std::string> StringVector;
 typedef std::vector<int> IntVector;
 
-namespace cool
+namespace coolstringops
 {
 
-class CoolStringOperation
-{
-public:
-	/* Constructors and Destructors */
-	CoolStringOperation();
-	CoolStringOperation(std::string data);
-	CoolStringOperation(const CoolStringOperation& sourceString);
-	CoolStringOperation& operator=(const CoolStringOperation& sourceString);
-	~CoolStringOperation();
-public:
-	std::string get();
-	void set(std::string data);
-	int size();
-	
 	/* This method replace all occurance of a substring in the string to the new substring */
-	void replaceAllOccuranceOfSubstr(std::string subString, std::string newSubstring);
+	void replace_all(std::string& sourceString, std::string subString, std::string newSubstring);
 
 	/* This method is to split a string based on the passed delemeter. 
- 	 * If nothig is passed as delemeter it will split the string based on space 
- 	 */
-	void splitString(StringVector& result, std::string delemeter = ""); 
-	
+	 * If nothig is passed as delemeter it will split the string based on space 
+	 */
+	StringVector split(std::string sourceString, std::string delemeter = ""); 
+
 	/* This method will return vector containing positions of the substring in the main string*/
-	void findAllOccouranceOfSubstr(IntVector& posVect, std::string subString);
-	
+	IntVector find_all_occourance(std::string sourceString, std::string subString);
+
 	/* This method will remove all occourance of the substring from the main string */
-	void removeAllOccouranceOfSubstr(std::string subString);
+	void remove_all_occourance(std::string& sourceString, std::string subString);
 
 	/* This method will remove first occourance of the substring from the main string*/
-	void removeFirstOccouranceOfSubstr(std::string subString);
+	void remove_first_occourance(std::string& sourceString, std::string subString);
 
 	/* This method will remove last occourance of the substring from the main string*/
-	void removeLastOccouranceOfSubstr(std::string subString);
-		
-private:
-	std::string data;
-};
-
+	void remove_last_occourance(std::string& sourceString, std::string subString);
 }
 

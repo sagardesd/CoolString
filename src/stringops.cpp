@@ -1,67 +1,29 @@
 #include "stringops.h"
 
-namespace cool
+namespace coolstringops 
 {
-	CoolStringOperation::CoolStringOperation():data("")
-	{
-	}
-	
-	CoolStringOperation::CoolStringOperation(std::string data):data(data)
-	{
-	}
-
-	CoolStringOperation::CoolStringOperation(const CoolStringOperation& sourceString)
-	{
-		this->data = sourceString.data;
-	}
-	
-	CoolStringOperation& CoolStringOperation::operator=(const CoolStringOperation& sourceString)
-	{
-		this->data = sourceString.data;
-		return *this;
-	}
-
-	CoolStringOperation::~CoolStringOperation()
-	{
-	}
-	
-	std::string CoolStringOperation::get()
-	{
-		return this->data;
-	}
-	
-	void CoolStringOperation::set(std::string data)
-	{
-		this->data = data;
-	}
-
-	int CoolStringOperation::size()
-	{
-		return this->data.size();
-	}
-	
-	
-	void CoolStringOperation::replaceAllOccuranceOfSubstr(std::string subString, std::string newSubstring)
+	void replace_all(std::string& sourceString, std::string subString, std::string newSubstring)
 	{
 		std::string tempString;
 		int startPos = 0;
-		int pos = this->data.find(subString, startPos);
+		int pos = sourceString.find(subString, startPos);
 		while(pos != std::string::npos)
 		{
-			tempString += this->data.substr(startPos, pos - startPos);
+			tempString += sourceString.substr(startPos, pos - startPos);
 			tempString += newSubstring;
 			startPos = pos + subString.size();
-			pos = this->data.find(subString, startPos);
+			pos = sourceString.find(subString, startPos);
 		}
-		if(startPos <  this->data.size())
+		if(startPos <  sourceString.size())
 		{
-			tempString += this->data.substr(startPos);
+			tempString += sourceString.substr(startPos);
 		}
-		this->set(tempString);
+		sourceString = tempString;
 	}
 
-	void CoolStringOperation::splitString(StringVector& result, std::string delemeter)
+	StringVector split(std::string sourceString, std::string delemeter)
 	{
+		StringVector result;
 		if(delemeter.empty())
 		{
 			delemeter = " ";
@@ -69,82 +31,84 @@ namespace cool
 		int delemeterSize = delemeter.size();
 		std::string token;
 		int startPos = 0;
-		int pos = this->data.find(delemeter);
+		int pos = sourceString.find(delemeter);
 		while(pos != std::string::npos)
 		{
-			token = this->data.substr(startPos, pos - startPos);
+			token = sourceString.substr(startPos, pos - startPos);
 			result.push_back(token);
 			startPos = pos + delemeterSize;
-			pos = this->data.find(delemeter, startPos);
+			pos = sourceString.find(delemeter, startPos);
 		}
-		if(startPos < this->data.size())
+		if(startPos < sourceString.size())
 		{
-			result.push_back(this->data.substr(startPos));
+			result.push_back(sourceString.substr(startPos));
 		}	
+		return result;
 	}
-	
-	void CoolStringOperation::findAllOccouranceOfSubstr(IntVector& posVect, std::string subString)
+
+	IntVector find_all_occourance(std::string sourceString, std::string subString)
 	{
-		if(subString.empty())
+		IntVector result;
+		if(subString.empty() || (subString.size() > sourceString.size()))
 		{
-			return;
+			return result;
 		}
 		int substringSize = subString.size();
-		int pos = this->data.find(subString);
+		int pos = sourceString.find(subString);
 		while(pos != std::string::npos)
 		{
-			posVect.push_back(pos);
-			pos = this->data.find(subString, pos + substringSize);
+			result.push_back(pos);
+			pos = sourceString.find(subString, pos + substringSize);
 		}
+		return result;
 	}
-	
-	void CoolStringOperation::removeAllOccouranceOfSubstr(std::string subString)
+
+	void remove_all_occourance(std::string& sourceString, std::string subString)
 	{
-		if(subString.empty())
+		if(subString.empty() || (subString.size() > sourceString.size()))
 		{
 			return;
 		}	
 		int startPos = 0;
 		int substrPos = 0;
 		int substrSize = subString.size();
-		while((substrPos = this->data.find(subString, startPos)) != std::string::npos)
+		while((substrPos = sourceString.find(subString, startPos)) != std::string::npos)
 		{
-			this->data.erase(substrPos, substrSize);
-		}
-	}
-	
-	void CoolStringOperation::removeFirstOccouranceOfSubstr(std::string subString)
-	{
-		if(subString.empty())
-		{
-			return;
-		}
-		int pos = this->data.find(subString);
-		if(pos != std::string::npos)
-		{
-			this->data.erase(pos, subString.size());
+			sourceString.erase(substrPos, substrSize);
 		}
 	}
 
-	void CoolStringOperation::removeLastOccouranceOfSubstr(std::string subString)
+	void remove_first_occourance(std::string& sourceString, std::string subString)
 	{
-		if(subString.empty())
+		if(subString.empty() || (subString.size() > sourceString.size()))
+		{
+			return;
+		}
+		int pos = sourceString.find(subString);
+		if(pos != std::string::npos)
+		{
+			sourceString.erase(pos, subString.size());
+		}
+	}
+
+	void remove_last_occourance(std::string& sourceString, std::string subString)
+	{
+		if(subString.empty() || (subString.size() > sourceString.size()))
 		{
 			return;
 		}
 		int startPos = 0;
 		int oldPos = 0;
 		int pos = 0;
-		while((pos = this->data.find(subString, startPos)) != std::string::npos)
+		while((pos = sourceString.find(subString, startPos)) != std::string::npos)
 		{
 			oldPos = pos;
 			startPos = pos + subString.size();
 		}	
-		if(oldPos < this->data.size())
+		if(oldPos < sourceString.size())
 		{
-			this->data.erase(oldPos, subString.size());
+			sourceString.erase(oldPos, subString.size());
 		}
 	}
-	
 }
 
