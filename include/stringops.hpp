@@ -10,7 +10,7 @@
 typedef std::vector<std::string> StringVector;
 typedef std::vector<int> IntVector;
 
-namespace coolstringops
+namespace cool
 {
 namespace stringops
 {
