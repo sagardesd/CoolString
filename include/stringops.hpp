@@ -12,6 +12,8 @@ typedef std::vector<int> IntVector;
 
 namespace coolstringops
 {
+namespace stringops
+{
 	
 	/* This method replace all occurance of a substring in the string to the new substring */
 	void replace_all(std::string& sourceString, std::string subString, std::string newSubstring)
@@ -129,5 +131,5 @@ namespace coolstringops
 			sourceString.erase(oldPos, subString.size());
 		}
 	}
-}
-
+} // end of namespace stringops
+} // end of namespace cool
