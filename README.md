@@ -21,4 +21,12 @@ The opeartions currently supported are:
    
 6. void remove_last_occourance(std::string& sourceString, std::string subString)
    - This api will remove the last occourance of the subString from the sourceString.
+   
+7. void trim_leading_spaces(std::string& sourceString)
+   - This api will trim the leading spaces froma the sourceString.
+   - If no leading space is present in the sourceString then the sourceString remain unchanged.
+
+8. void trim_trailing_spaces(std::string& sourceString)
+   - This api will trim trailing spaces from the sourceString.
+   - If no trailing space is present in the sourceString then the sourceString remain unchanged.
 
