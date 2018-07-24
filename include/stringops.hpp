@@ -131,5 +131,34 @@ namespace stringops
 			sourceString.erase(oldPos, subString.size());
 		}
 	}
+	
+	/* This method will remove all leading spaces from the passed sourceString */
+	void trim_leading_spaces(std::string& sourceString)
+	{
+		if(sourceString.empty())
+		{
+			return;
+		}
+		int found = sourceString.find_first_not_of(" ");
+		if(found != std::string::npos && found != 0)
+		{
+			sourceString.erase(0, found);
+		}
+	}
+	
+	/* This method will remove all trailing spaces from the passed sourceString */
+	void trim_trailing_spaces(std::string& sourceString)
+	{
+		if(sourceString.empty())
+		{
+			return;
+		}
+		int found = sourceString.find_last_not_of(" ");
+		std::cout << "found - " << found << std::endl;
+		if(found != std::string::npos)
+		{
+			sourceString.erase(found + 1, sourceString.size());
+		}
+	}
 } // end of namespace stringops
 } // end of namespace cool
