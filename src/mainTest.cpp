@@ -46,12 +46,40 @@ void test_remove_last_occourance()
 	std::cout << "TEST : test_remove_last_occourance : END" << std::endl;
 }
 
+void test_trim_leading_spaces()
+{
+	std::cout << "TEST : test_trim_leading_spaces : START" << std::endl;
+	std::string sourceString1("     is sagar is dumb");
+	cool::stringops::trim_leading_spaces(sourceString1);
+	std::cout << "Source string after trim :" << sourceString1 << std::endl;
+	std::string sourceString2("This string is without space");
+	cool::stringops::trim_leading_spaces(sourceString2);
+	std::cout << "Source string after trim :" << sourceString2 << std::endl;
+	std::cout << "TEST : test_trim_leading_spaces : END" << std::endl;
+}
+
+void test_trim_trailing_spaces()
+{
+	std::cout << "TEST : test_trim_trailing_spaces : START" << std::endl;
+	std::string sourceString1("is sagar is dumb    ");
+	cool::stringops::trim_trailing_spaces(sourceString1);
+	std::cout << "Source string after trim :" << sourceString1 << std::endl;
+	std::string sourceString2("    This string is without space");
+	cool::stringops::trim_trailing_spaces(sourceString2);
+	std::cout << "Source string after trim :" << sourceString2 << std::endl;
+	std::cout << "TEST : test_trim_trailing_spaces : END" << std::endl;
+}
+
 int main()
 {
+	/*
 	test_replace_all();
 	test_split();
 	test_find_all_occourance();
 	test_remove_all_occourance();
 	test_remove_first_occourance();
 	test_remove_last_occourance();
+	*/
+	//test_trim_leading_spaces();
+	test_trim_trailing_spaces();
 }
